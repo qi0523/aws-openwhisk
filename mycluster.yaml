@@ -1,0 +1,69 @@
+whisk:
+  ingress:
+    type: NodePort
+    apiHostName: 172.32.255.253 
+    apiHostPort: 31001
+  limits:
+    actionsInvokesPerminute: 3000
+    actionsInvokesConcurrent: 3000
+    triggersFiresPerminute: 2000
+  loadbalancer:
+    blackboxFraction: "10%"
+  scheduler:
+    scheduling:
+      concurrency: 16
+  containerProxy:
+    timeouts:
+      idleContainer: "2 minutes"
+  containerPool:
+    userMemory: "4096m"
+  containerFactory:
+    userImagesRegistry:
+      url: "172.32..:35000"
+  fraction:
+    managedFraction: "100%"
+    blackboxFraction: "20%"
+# k8s:
+#   persistence:
+#     enabled: false
+    
+nginx:
+  httpsNodePort: 31001
+invoker:
+  imageName: "qi0523/invoker"
+  imageTag: "dlcl"
+  loglevel: "WARN"
+  jvmHeapMB: "4096"
+  containerFactory:
+    impl: "docker"
+  imageGc:
+    delay: "120"
+    diskPath: "/"
+    highThresholdPercent: "85"
+    lowThresholdPercent: "70"
+
+controller:
+  jvmHeapMB: "4096"
+
+scheduler:
+  imageName: "qi0523/scheduler"
+  imageTag: "dlcl"
+  qps: 8
+  loglevel: "WARN"
+  inProgressJobRetention: "300 seconds"
+  core: 2
+  jvmHeapMB: "4096"
+  queue:
+    idleGrace: "120 seconds"
+    maxRetentionMs: 180000
+    throttlingFraction: 0.9
+    durationBufferSize: 10
+  p2pManager:
+    remoteRegistryUrl: "172.32.."
+    # remoteRegistryUrl: "342671031709.dkr.ecr.cn-northwest-1.amazonaws.com.cn"
+    dlclCurrent: "2"
+    actionName: "1a084cf70d89160151bfe9722cb4c124|2a084cf70d89160151bfe9722cb4c124|3a084cf70d89160151bfe9722cb4c124|4a084cf70d89160151bfe9722cb4c124|5a084cf70d89160151bfe9722cb4c124|6a084cf70d89160151bfe9722cb4c124|7a084cf70d89160151bfe9722cb4c124|8a084cf70d89160151bfe9722cb4c124|9a084cf70d89160151bfe9722cb4c124|aa084cf70d89160151bfe9722cb4c124|ba084cf70d89160151bfe9722cb4c124|ca084cf70d89160151bfe9722cb4c124"
+    count: 500
+  P2PManagerProvider: "org.apache.openwhisk.core.scheduler.p2p.dlcl.DLCLManagerProvider"
+  #P2PManagerProvider: "org.apache.openwhisk.core.scheduler.p2p.ft.FTManagerProvider"
+  #P2PManagerProvider: "org.apache.openwhisk.core.scheduler.p2p.NoneManagerProvider"
