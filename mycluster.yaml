@@ -31,7 +31,7 @@ nginx:
   httpsNodePort: 31001
 invoker:
   imageName: "qi0523/invoker"
-  imageTag: "dlcl"
+  imageTag: "dlcl-aws"
   loglevel: "WARN"
   jvmHeapMB: "4096"
   containerFactory:
@@ -47,7 +47,7 @@ controller:
 
 scheduler:
   imageName: "qi0523/scheduler"
-  imageTag: "dlcl"
+  imageTag: "dlcl-aws"
   qps: 8
   loglevel: "WARN"
   inProgressJobRetention: "300 seconds"
