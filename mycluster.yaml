@@ -14,7 +14,7 @@ whisk:
       concurrency: 16
   containerProxy:
     timeouts:
-      idleContainer: "2 minutes"
+      idleContainer: "1 minutes"
   containerPool:
     userMemory: "4096m"
   containerFactory:
