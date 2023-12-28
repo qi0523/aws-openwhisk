@@ -1,7 +1,7 @@
 whisk:
   ingress:
     type: NodePort
-    apiHostName: 172.32.255.253 
+    apiHostName: REPLACE_ME_WITH_IP
     apiHostPort: 31001
   limits:
     actionsInvokesPerminute: 3000
@@ -19,7 +19,7 @@ whisk:
     userMemory: "4096m"
   containerFactory:
     userImagesRegistry:
-      url: "172.32..:35000"
+      url: "172.32..:35000/@@~~~~0"
   fraction:
     managedFraction: "100%"
     blackboxFraction: "20%"
@@ -31,9 +31,9 @@ nginx:
   httpsNodePort: 31001
 invoker:
   imageName: "qi0523/invoker"
-  imageTag: "dlcl-aws"
+  imageTag: "dlcl"
   loglevel: "WARN"
-  jvmHeapMB: "4096"
+  jvmHeapMB: "2048"
   containerFactory:
     impl: "docker"
   imageGc:
@@ -43,11 +43,11 @@ invoker:
     lowThresholdPercent: "70"
 
 controller:
-  jvmHeapMB: "4096"
+  jvmHeapMB: "2048"
 
 scheduler:
   imageName: "qi0523/scheduler"
-  imageTag: "dlcl-aws"
+  imageTag: "dlcl"
   qps: 8
   loglevel: "WARN"
   inProgressJobRetention: "300 seconds"
