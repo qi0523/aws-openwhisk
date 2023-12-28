@@ -19,7 +19,7 @@ whisk:
     userMemory: "4096m"
   containerFactory:
     userImagesRegistry:
-      url: "172.32..:35000/@@~~~~0"
+      url: "172.32..:30000/@@~~~~0"
   fraction:
     managedFraction: "100%"
     blackboxFraction: "20%"
@@ -47,7 +47,7 @@ controller:
 
 scheduler:
   imageName: "qi0523/scheduler"
-  imageTag: "dlcl"
+  imageTag: "dlcl-aws"
   qps: 8
   loglevel: "WARN"
   inProgressJobRetention: "300 seconds"
