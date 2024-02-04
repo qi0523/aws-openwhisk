@@ -103,6 +103,9 @@ spec:
 
           - name: "CONFIG_whisk_scheduler_p2pManager_actionName"
             value: {{ .Values.scheduler.p2pManager.actionName | quote }}
+          
+          - name: "CONFIG_whisk_scheduler_p2pManager_remoteRegistryUrl"
+            value: {{ .Values.scheduler.p2pManager.remoteRegistryUrl | quote }}
 
           - name: "CONFIG_whisk_imageGc_delay"
             value: {{ .Values.invoker.imageGc.delay | quote }}
